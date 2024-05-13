@@ -44,7 +44,9 @@ export default function Navbar() {
                 {/* Hamburger */}
                 <div
                   className={`md:hidden fixed inset-0 ${
-                    isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+                    isOpen
+                      ? "opacity-100 bg-black/30"
+                      : "opacity-0 pointer-events-none "
                   }`}
                   onClick={closeMenu}
                 ></div>
