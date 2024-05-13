@@ -9,7 +9,11 @@ export const ThemeSwitcher = () => {
   };
 
   return (
-    <button className="text-xl" onClick={toggleTheme}>
+    <button
+      className="text-xl"
+      onClick={toggleTheme}
+      aria-label="theme change button"
+    >
       <VscColorMode />
     </button>
   );

@@ -60,6 +60,7 @@ export default function Navbar() {
                       type="button"
                       onClick={() => setOpen(false)}
                       className="rounded-md text-gray-300 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+                      aria-label="Close panel"
                     >
                       <span className="sr-only">Close panel</span>
                       <IoMdArrowRoundBack className="dark:text-white text-black" />
