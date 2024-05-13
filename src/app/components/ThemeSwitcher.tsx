@@ -4,20 +4,13 @@ import { VscColorMode } from "react-icons/vsc";
 export const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
 
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
   return (
-    <div>
-      <button
-        className={`${theme === "light" && "hidden"} text-xl`}
-        onClick={() => setTheme("light")}
-      >
-        <VscColorMode />
-      </button>
-      <button
-        className={`${theme === "dark" && "hidden"} text-xl`}
-        onClick={() => setTheme("dark")}
-      >
-        <VscColorMode />
-      </button>
-    </div>
+    <button className="text-xl" onClick={toggleTheme}>
+      <VscColorMode />
+    </button>
   );
 };
