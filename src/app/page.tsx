@@ -1,11 +1,10 @@
-import Image from "next/image";
-import Weather from "./components/Weather";
+import GetWeatherUserLocation from "./components/GetWeatherUserLocation";
 
 export default function Home() {
   const weatherApiKey = process.env.WEATHER_API as string;
   return (
     <div>
-      <Weather city="Kathmandu" apiKey={weatherApiKey} />
+      <GetWeatherUserLocation apiKey={weatherApiKey} />
     </div>
   );
 }

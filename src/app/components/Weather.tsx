@@ -1,18 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Weather({
-  city,
   apiKey,
+  latitude,
+  longitude,
 }: {
-  city: string;
   apiKey: string;
+  latitude: number;
+  longitude: number;
 }) {
   const [weatherData, setWeatherData] = useState<any>(null);
 
-  const apiUrl =
-    "https://api.openweathermap.org/data/2.5/weather?lat=27.700769&lon=85.300140";
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}`;
   useEffect(() => {
     async function checkWeather() {
       if (!apiKey) {
@@ -26,7 +28,7 @@ export default function Weather({
     }
 
     checkWeather();
-  }, [apiKey, apiUrl, city]);
+  }, [apiKey, apiUrl, latitude, longitude]);
 
   if (!weatherData) {
     return <div>Loading...</div>;
@@ -34,9 +36,20 @@ export default function Weather({
 
   const { name, weather, main, wind, visibility, dt } = weatherData;
 
+  // const icon = "https://openweathermap.org/img/wn/10d@2x.png";
+  const icon = weather[0].icon;
+
   return (
     <div>
       <h2>{name}</h2>
+      <Image
+        unoptimized
+        src={`
+            https://openweathermap.org/img/wn/${icon}@2x.png`}
+        alt="icon"
+        height={30}
+        width={30}
+      />
       <p>Weather: {weather[0].description}</p>
       <p>Temperature: {main.temp} °C</p>
       <p>Wind Speed: {wind.speed} m/s</p>
