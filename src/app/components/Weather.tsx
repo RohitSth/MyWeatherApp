@@ -13,6 +13,7 @@ export default function Weather({
   longitude: number;
 }) {
   const [weatherData, setWeatherData] = useState<any>(null);
+  const [currentTime, setCurrentTime] = useState<string>(getCurrentTime());
 
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}`;
   useEffect(() => {
@@ -28,13 +29,21 @@ export default function Weather({
     }
 
     checkWeather();
+
+    // Update current time every second
+    const intervalId = setInterval(() => {
+      setCurrentTime(getCurrentTime());
+    }, 1000);
+
+    // Clear interval on component unmount
+    return () => clearInterval(intervalId);
   }, [apiKey, apiUrl, latitude, longitude]);
 
   if (!weatherData) {
     return <div>Loading...</div>;
   }
 
-  const { name, weather, main, wind, visibility, dt } = weatherData;
+  const { name, weather, main, wind, visibility, dt, sys } = weatherData;
 
   // const icon = "https://openweathermap.org/img/wn/10d@2x.png";
   const icon = weather[0].icon;
@@ -66,6 +75,16 @@ export default function Weather({
     return directions[index];
   };
 
+  // const getCurrentTime = () => {
+  //   const currentTime = new Date();
+  //   return currentTime.toLocaleTimeString();
+  // };
+
+  // Format sunrise and sunset times
+  const sunriseTime = new Date(sys.sunrise * 1000).toLocaleTimeString();
+  const sunsetTime = new Date(sys.sunset * 1000).toLocaleTimeString();
+  // const currentTime = getCurrentTime();
+
   return (
     <div>
       <h2>{name}</h2>
@@ -81,9 +100,16 @@ export default function Weather({
       <p>Temperature: {temperatureCelsius} °C</p>
       <p>Wind Speed: {windSpeedMph} mph</p>
       <p>Wind Direction: From {getWindDirection(wind.deg)}</p>
+      <p>Sunrise: {sunriseTime}</p>
+      <p>Sunset: {sunsetTime}</p>
       <p>Visibility: {visibilityKm} km</p>
       <p>Date: {new Date(dt * 1000).toLocaleDateString()}</p>
       <p>Humidity: {main.humidity}%</p>
+      <p>Current Time: {currentTime}</p>
     </div>
   );
+}
+
+function getCurrentTime() {
+  return new Date().toLocaleTimeString();
 }
