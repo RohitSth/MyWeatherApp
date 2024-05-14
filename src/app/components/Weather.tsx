@@ -38,6 +38,33 @@ export default function Weather({
 
   // const icon = "https://openweathermap.org/img/wn/10d@2x.png";
   const icon = weather[0].icon;
+  const temperatureCelsius = Math.round(main.temp - 273.15);
+  const windSpeedMph = Math.round(wind.speed * 2.23694);
+  const visibilityKm = Math.round(visibility / 1000);
+
+  // Function to convert wind direction degrees to cardinal directions
+  const getWindDirection = (degrees: number) => {
+    const directions = [
+      "North",
+      "North-Northeast",
+      "Northeast",
+      "East-Northeast",
+      "East",
+      "East-Southeast",
+      "Southeast",
+      "South-Southeast",
+      "South",
+      "South-Southwest",
+      "Southwest",
+      "West-Southwest",
+      "West",
+      "West-Northwest",
+      "Northwest",
+      "North-Northwest",
+    ];
+    const index = Math.round(degrees / 22.5) % 16;
+    return directions[index];
+  };
 
   return (
     <div>
@@ -51,10 +78,12 @@ export default function Weather({
         width={30}
       />
       <p>Weather: {weather[0].description}</p>
-      <p>Temperature: {main.temp} °C</p>
-      <p>Wind Speed: {wind.speed} m/s</p>
-      <p>Visibility: {visibility} m</p>
+      <p>Temperature: {temperatureCelsius} °C</p>
+      <p>Wind Speed: {windSpeedMph} mph</p>
+      <p>Wind Direction: From {getWindDirection(wind.deg)}</p>
+      <p>Visibility: {visibilityKm} km</p>
       <p>Date: {new Date(dt * 1000).toLocaleDateString()}</p>
+      <p>Humidity: {main.humidity}%</p>
     </div>
   );
 }
