@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <NextUIProvider>
           <NextThemesProvider attribute="class" defaultTheme="dark">
-            <main>
+            <main className="h-screen">
               <Navbar />
               {children}
             </main>

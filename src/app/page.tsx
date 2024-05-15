@@ -3,8 +3,15 @@ import GetWeatherUserLocation from "./components/GetWeatherUserLocation";
 export default function Home() {
   const weatherApiKey = process.env.WEATHER_API as string;
   return (
-    <div>
-      <GetWeatherUserLocation apiKey={weatherApiKey} />
+    <div className="h-full flex gap-x-4 px-4 mx-auto max-w-7xl sm:px-6">
+      <div className="flex-1" style={{ flex: 0.618 }}>
+        <div>
+          <GetWeatherUserLocation apiKey={weatherApiKey} />
+        </div>
+      </div>
+      <div className="flex-1 shadow shadow-white rounded" style={{ flex: 1 }}>
+        <div className="flex">Okaayy</div>
+      </div>
     </div>
   );
 }

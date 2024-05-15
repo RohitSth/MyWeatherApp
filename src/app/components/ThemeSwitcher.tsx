@@ -10,7 +10,7 @@ export const ThemeSwitcher = () => {
 
   return (
     <button
-      className="text-xl"
+      className="text-2xl"
       onClick={toggleTheme}
       aria-label="theme change button"
     >

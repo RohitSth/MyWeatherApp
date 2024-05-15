@@ -20,7 +20,7 @@ export default function Navbar() {
   return (
     <div>
       <div className="px-4 mx-auto max-w-7xl sm:px-6">
-        <div className="relative pt-6 pb-16 sm:pb-24">
+        <div className="relative py-6">
           <nav
             className="relative flex items-center justify-between sm:h-10 md:justify-center"
             aria-label="Global"
@@ -37,46 +37,6 @@ export default function Navbar() {
                     alt="Logo"
                   />
                 </Link>
-                <div className="flex items-center -mr-2 md:hidden">
-                  <Hamburger toggled={isOpen} toggle={setOpen} />
-                </div>
-
-                {/* Hamburger */}
-                <div
-                  className={`md:hidden fixed inset-0 ${
-                    isOpen
-                      ? "opacity-100 bg-black/30"
-                      : "opacity-0 pointer-events-none "
-                  }`}
-                  onClick={closeMenu}
-                ></div>
-                <div
-                  className={`md:hidden fixed inset-y-0 left-0 z-30 ${
-                    isOpen ? "translate-x-0" : "-translate-x-full"
-                  } flex flex-col w-[75%] bg-white dark:bg-black shadow-xl`}
-                >
-                  <div className="p-4 ">
-                    <button
-                      type="button"
-                      onClick={() => setOpen(false)}
-                      className="rounded-md text-gray-300 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
-                      aria-label="Close panel"
-                    >
-                      <span className="sr-only">Close panel</span>
-                      <IoMdArrowRoundBack className="dark:text-white text-black" />
-                    </button>
-                  </div>
-                  <div className="py-6 px-4 ">
-                    <h2
-                      className="text-base font-semibold leading-6 text-gray-900 dark:text-white "
-                      id="slide-over-title"
-                    >
-                      Panel title
-                    </h2>
-                    {/* Your content */}
-                    <ThemeSwitcher />
-                  </div>
-                </div>
               </div>
             </div>
             <div>
@@ -87,7 +47,7 @@ export default function Navbar() {
                     className="text-base font-normal text-black dark:text-white hover:text-gray-900"
                     target=""
                   >
-                    Pricing
+                    Weather
                   </Link>
                 </li>
                 <li>
@@ -96,7 +56,7 @@ export default function Navbar() {
                     className="text-base font-normal text-black dark:text-white hover:text-gray-900"
                     target=""
                   >
-                    Gallary
+                    News
                   </Link>
                 </li>
                 <li>
@@ -110,12 +70,76 @@ export default function Navbar() {
                 </li>
               </ul>
             </div>
-            <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
-              <div className="rounded-full">
-                {/* Theme Change */}
+            <div className="md:absolute flex md:items-center md:justify-end md:inset-y-0 md:right-0">
+              <div className="flex items-center">
+                {/* Theme Change Button */}
                 <ThemeSwitcher />
               </div>
             </div>
+
+            {/* Hamburger */}
+            <div className="flex items-center -mr-2 md:hidden">
+              <Hamburger toggled={isOpen} toggle={setOpen} />
+            </div>
+
+            <div
+              className={`md:hidden fixed inset-0 ${
+                isOpen
+                  ? "opacity-100 bg-black/30"
+                  : "opacity-0 pointer-events-none "
+              }`}
+              onClick={closeMenu}
+            ></div>
+            <div
+              className={`md:hidden fixed inset-y-0 left-0 z-30 ${
+                isOpen ? "translate-x-0" : "-translate-x-full"
+              } flex flex-col w-[75%] bg-white dark:bg-black shadow-xl`}
+            >
+              <div className="p-4 ">
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="rounded-md text-gray-300 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+                  aria-label="Close panel"
+                >
+                  <span className="sr-only">Close panel</span>
+                  <IoMdArrowRoundBack className="dark:text-white text-black" />
+                </button>
+              </div>
+              <div className="py-6 px-4 ">
+                {/* Navbar for Hamburger */}
+                <ul className="flex flex-col gap-y-4">
+                  <li>
+                    <Link
+                      href="#"
+                      className="text-base font-normal text-black dark:text-white hover:text-gray-900"
+                      target=""
+                    >
+                      Weather
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="#"
+                      className="text-base font-normal text-black dark:text-white hover:text-gray-900"
+                      target=""
+                    >
+                      News
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="#"
+                      className="text-base font-normal text-black dark:text-white hover:text-gray-900"
+                      target=""
+                    >
+                      Blog
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            {/* Hamburger */}
           </nav>
         </div>
       </div>
