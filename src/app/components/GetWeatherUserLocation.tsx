@@ -44,19 +44,12 @@ export default function GetWeatherUserLocation({ apiKey }: { apiKey: string }) {
   return (
     <div className="flex flex-col gap-y-2">
       {permissionDenied ? (
-        <button
-          onClick={getUserLocation}
-          className="rounded-lg bg-gray-500 w-fit p-2 text-black"
-          disabled
-        >
-          <FaLocationCrosshairs />
+        <button onClick={getUserLocation} className="w-fit p-2" disabled>
+          <FaLocationCrosshairs className="text-gray-500" />
         </button>
       ) : (
-        <button
-          onClick={getUserLocation}
-          className="rounded-lg bg-white w-fit p-2 text-black"
-        >
-          <FaLocationCrosshairs />
+        <button onClick={getUserLocation} className="w-fit p-2">
+          <FaLocationCrosshairs className="text-black dark:text-white" />
         </button>
       )}
       {latitude !== null && longitude !== null && !permissionDenied ? (
