@@ -1,12 +1,12 @@
 "use client";
 
-import Weather from "./Weather";
 import { useState } from "react";
-import AirPollution from "./AirPollution";
 
 import { FaLocationCrosshairs } from "react-icons/fa6";
 
-export default function GetWeatherUserLocation({ apiKey }: { apiKey: string }) {
+export default function GetLocation({ children }: { children: any }) {
+  const apiKey = process.env.WEATHER_API as string;
+
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
 
@@ -54,14 +54,7 @@ export default function GetWeatherUserLocation({ apiKey }: { apiKey: string }) {
         </button>
       )}
       {latitude !== null && longitude !== null && !permissionDenied ? (
-        <>
-          <Weather latitude={latitude} longitude={longitude} apiKey={apiKey} />
-          <AirPollution
-            latitude={latitude}
-            longitude={longitude}
-            apiKey={apiKey}
-          />
-        </>
+        <>{children}</>
       ) : (
         <div>
           <p className="text-black dark:text-white">Demo Data when access</p>
