@@ -1,7 +1,10 @@
+import { divider } from "@nextui-org/react";
 import GetWeatherUserLocation from "./components/GetWeatherUserLocation";
 
 export default function Home() {
   const weatherApiKey = process.env.WEATHER_API as string;
+  const testApi =
+    "https://r3-f-next-js-starter-package.vercel.app/api/public/users";
 
   return (
     <div className="h-full flex gap-x-4 px-4 mx-auto max-w-7xl sm:px-6">
@@ -12,6 +15,7 @@ export default function Home() {
       </div>
       <div className="flex-1 shadow shadow-white rounded">
         <div className="flex">Okaayy</div>
+        {testApi ? <div>{testApi[0]}</div> : <div>No Data</div>}
       </div>
     </div>
   );
